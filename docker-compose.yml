@@ -1,7 +1,8 @@
 version: '3.4'
 
 services:
-  image: ui
+  ui:
+    image: ui
     build:
       context: .
       dockerfile: src/Ui/Dockerfile
@@ -31,8 +32,8 @@ services:
       - RABBITMQ_DEFAULT_USER=admin
       - RABBITMQ_DEFAULT_PASS=admin
     ports:
-      - "5672:5672"  # RabbitMQ main port
-      - "15672:15672"  # RabbitMQ management UI port
+      - "5672:5672"  
+      - "15672:15672"  
     networks:
       - common_network
 
