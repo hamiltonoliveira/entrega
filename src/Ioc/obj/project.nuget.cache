@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "eUMa2uew9dl3amEg+LJfySK1MCuz8CVbI64bInr0JCC7dhf/GD7a1MFJY0ABvC+JlHc+vqA5DxGnlgTuhuolWg==",
+  "dgSpecHash": "DMeB09l+Ghofjc5Hle6b1KhcZPXAGFDcAnkuCLKnQLoq90O3wsS8aoqKiD4aFldudQVHmfREQJbsZXlD7z4QCA==",
   "success": true,
   "projectFilePath": "C:\\Projetos\\EntregaJa\\src\\Ioc\\Ioc.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\hamil\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\7.0.0\\microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\hamil\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\hamil\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
