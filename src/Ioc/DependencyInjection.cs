@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Application.Interfaces;
+using Application.Services;
+using Infrastructure.Interfaces;
+using Infrastructure.Repositories;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Ioc
@@ -7,15 +11,15 @@ namespace Ioc
         {
             public static IServiceCollection AddInfraStructure(this IServiceCollection service, IConfiguration Configuration)
             {
-                //service.AddScoped<IAutenticarRepositorio, AutenticarRepositorio>();
-                //service.AddScoped<IUsersRepository, UsersRepository>();
+                service.AddScoped<IAutenticarRepositorio, AutenticarRepositorio>();
+                service.AddScoped<IUserRepository, UserRepository>();
                return service;
             }
 
             public static IServiceCollection AddServices(this IServiceCollection service, IConfiguration Configuration)
             {
-                //service.AddScoped<IAutenticarService, AutenticarService>();
-                //service.AddScoped<IUsersService, UsersService>();
+                service.AddScoped<IAutenticarService, AutenticarService>();
+                service.AddScoped<IUserService, UserService>();
                return service;
             }
         }
