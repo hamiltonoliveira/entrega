@@ -1,145 +1,127 @@
-﻿using System.Net;
+﻿using System.Security.Cryptography;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Security.Cryptography;
-
+using System.Net;
 
 namespace Application.Helpers
 {
     public static class Criptograph
     {
-        /// <summary>     
-        /// Vetor de bytes utilizados para a criptografia (Chave Externa)     
-        /// </summary>     
-        private static byte[] bIV =
-        { 0x50, 0x08, 0xF1, 0xDD, 0xDE, 0x3C, 0xF2, 0x18,
-        0x44, 0x74, 0x19, 0x2C, 0x53, 0x49, 0xAB, 0xBC };
-
-        /// <summary>     
-        /// Representação de valor em base 64 (Chave Interna)    
-        /// O Valor representa a transformação para base64 de     
-        /// um conjunto de 32 caracteres (8 * 32 = 256bits)    
-        /// A chave é: "Criptografias com Rijndael / AES"     
-        /// </summary>     
-        private const string cryptoKey = "Q3JpcHRvZ3JhZmlhcyBjb20gUmluamRhZWwgLyBBRVM=";
+        // Chave utilizada para a criptografia (Chave de 256 bits = 32 bytes)
+        private static byte[] key =
+        {
+            0x54, 0x68, 0x69, 0x73, 0x49, 0x73, 0x41, 0x65,
+            0x73, 0x4B, 0x65, 0x79, 0x46, 0x6F, 0x72, 0x41,
+            0x45, 0x53, 0x2E, 0x4E, 0x45, 0x54, 0x2E, 0x61,
+            0x6E, 0x64, 0x2E, 0x61, 0x77, 0x65, 0x73, 0x6F
+        };
 
         public static string Decrypt(int escolaId)
         {
             throw new NotImplementedException();
         }
 
-        /// <summary>     
-        /// Metodo de criptografia de valor     
-        /// </summary>     
-        /// <param name="text">valor a ser criptografado</param>     
-        /// <returns>valor criptografado</returns>
         public static string Encrypt(string text)
         {
             try
             {
-                // Se a string não está vazia, executa a criptografia
                 if (!string.IsNullOrEmpty(text))
                 {
-                    // Cria instancias de vetores de bytes com as chaves                
-                    byte[] bKey = Convert.FromBase64String(cryptoKey);
                     byte[] bText = new UTF8Encoding().GetBytes(text);
 
-                    // Instancia a classe de criptografia Rijndael
-                    Rijndael rijndael = new RijndaelManaged();
+                    using (Aes aesAlg = Aes.Create())
+                    {
+                        aesAlg.Key = key;
+                        aesAlg.Mode = CipherMode.CBC;
+                        aesAlg.Padding = PaddingMode.PKCS7;
 
-                    // Define o tamanho da chave "256 = 8 * 32"                
-                    // Lembre-se: chaves possíves:                
-                    // 128 (16 caracteres), 192 (24 caracteres) e 256 (32 caracteres)                
-                    rijndael.KeySize = 256;
+                        // Inicializa o vetor de inicialização (IV)
+                        aesAlg.GenerateIV();
+                        byte[] iv = aesAlg.IV;
 
-                    // Cria o espaço de memória para guardar o valor criptografado:                
-                    MemoryStream mStream = new MemoryStream();
-                    // Instancia o encriptador                 
-                    CryptoStream encryptor = new CryptoStream(
-                        mStream,
-                        rijndael.CreateEncryptor(bKey, bIV),
-                        CryptoStreamMode.Write);
+                        // Cria o espaço de memória para guardar o valor criptografado
+                        MemoryStream mStream = new MemoryStream();
+                        // Instancia o encriptador
+                        using (ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, iv))
+                        {
+                            using (CryptoStream cryptoStream = new CryptoStream(mStream, encryptor, CryptoStreamMode.Write))
+                            {
+                                cryptoStream.Write(bText, 0, bText.Length);
+                                cryptoStream.FlushFinalBlock();
+                            }
+                        }
 
-                    // Faz a escrita dos dados criptografados no espaço de memória
-                    encryptor.Write(bText, 0, bText.Length);
-                    // Despeja toda a memória.                
-                    encryptor.FlushFinalBlock();
-                    // Pega o vetor de bytes da memória e gera a string criptografada  
-                    var retorno = WebUtility.UrlEncode(Convert.ToBase64String(mStream.ToArray()));
-                    return retorno;
+                        // Concatena o IV com os dados criptografados
+                        byte[] encryptedBytes = mStream.ToArray();
+                        byte[] combinedBytes = new byte[iv.Length + encryptedBytes.Length];
+                        Buffer.BlockCopy(iv, 0, combinedBytes, 0, iv.Length);
+                        Buffer.BlockCopy(encryptedBytes, 0, combinedBytes, iv.Length, encryptedBytes.Length);
+
+                        // Converte para Base64 e URL encode
+                        var retorno = WebUtility.UrlEncode(Convert.ToBase64String(combinedBytes));
+                        return retorno;
+                    }
                 }
                 else
                 {
-                    // Se a string for vazia retorna nulo                
                     return null;
                 }
             }
             catch (Exception ex)
             {
-                // Se algum erro ocorrer, dispara a exceção            
                 throw new ApplicationException("Erro ao criptografar", ex);
             }
         }
 
-        /// <summary>     
-        /// Pega um valor previamente criptografado e retorna o valor inicial 
-        /// </summary>     
-        /// <param name="text">texto criptografado</param>     
-        /// <returns>valor descriptografado</returns>     
         public static string Decrypt(string text)
         {
             try
             {
-                // Se a string não está vazia, executa a criptografia           
                 if (!string.IsNullOrEmpty(text))
                 {
-                    Match match = Regex.Match(text, "==");
-                    if (!match.Success)
+                    // URL decode e converte de Base64 para bytes
+                    text = WebUtility.UrlDecode(text);
+                    byte[] combinedBytes = Convert.FromBase64String(text);
+
+                    using (Aes aesAlg = Aes.Create())
                     {
-                        text = WebUtility.UrlDecode(text);
+                        aesAlg.Key = key;
+                        aesAlg.Mode = CipherMode.CBC;
+                        aesAlg.Padding = PaddingMode.PKCS7;
+
+                        // Extrai o IV do início dos bytes combinados
+                        byte[] iv = new byte[aesAlg.IV.Length];
+                        byte[] encryptedBytes = new byte[combinedBytes.Length - iv.Length];
+                        Buffer.BlockCopy(combinedBytes, 0, iv, 0, iv.Length);
+                        Buffer.BlockCopy(combinedBytes, iv.Length, encryptedBytes, 0, encryptedBytes.Length);
+
+                        aesAlg.IV = iv;
+
+                        // Cria o espaço de memória para guardar o valor descriptografado
+                        MemoryStream mStream = new MemoryStream();
+                        // Instancia o decriptador
+                        using (ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV))
+                        {
+                            using (CryptoStream cryptoStream = new CryptoStream(mStream, decryptor, CryptoStreamMode.Write))
+                            {
+                                cryptoStream.Write(encryptedBytes, 0, encryptedBytes.Length);
+                                cryptoStream.FlushFinalBlock();
+                            }
+                        }
+
+                        // Converte para string UTF-8
+                        string decryptedText = Encoding.UTF8.GetString(mStream.ToArray());
+                        return decryptedText;
                     }
-                    // Cria instancias de vetores de bytes com as chaves                
-                    byte[] bKey = Convert.FromBase64String(cryptoKey);
-                    byte[] bText = Convert.FromBase64String(text);
-
-                    // Instancia a classe de criptografia Rijndael                
-                    Rijndael rijndael = new RijndaelManaged();
-
-                    // Define o tamanho da chave "256 = 8 * 32"                
-                    // Lembre-se: chaves possíves:                
-                    // 128 (16 caracteres), 192 (24 caracteres) e 256 (32 caracteres)                
-                    rijndael.KeySize = 256;
-
-                    // Cria o espaço de memória para guardar o valor DEScriptografado:               
-                    MemoryStream mStream = new MemoryStream();
-
-                    // Instancia o Decriptador                 
-                    CryptoStream decryptor = new CryptoStream(
-                        mStream,
-                        rijndael.CreateDecryptor(bKey, bIV),
-                        CryptoStreamMode.Write);
-
-                    // Faz a escrita dos dados criptografados no espaço de memória   
-                    decryptor.Write(bText, 0, bText.Length);
-                    // Despeja toda a memória.                
-                    decryptor.FlushFinalBlock();
-                    // Instancia a classe de codificação para que a string venha de forma correta         
-                    UTF8Encoding utf8 = new UTF8Encoding();
-                    // Com o vetor de bytes da memória, gera a string descritografada em UTF8       
-                    return utf8.GetString(mStream.ToArray());
                 }
                 else
                 {
-                    // Se a string for vazia retorna nulo                
                     return null;
                 }
             }
             catch (Exception ex)
             {
-                // Se algum erro ocorrer, dispara a exceção            
                 throw new ApplicationException("Erro ao descriptografar", ex);
             }
         }
     }
-
 }

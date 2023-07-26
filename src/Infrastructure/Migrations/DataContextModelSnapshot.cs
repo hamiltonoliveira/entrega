@@ -34,6 +34,11 @@ namespace Infrastructure.Migrations
                         .HasColumnType("datetime")
                         .HasColumnName("Alterado");
 
+                    b.Property<string>("Cpf")
+                        .IsRequired()
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
+
                     b.Property<DateTime>("Criado")
                         .HasColumnType("datetime")
                         .HasColumnName("Criado");

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230726181839_bco")]
-    partial class bco
+    [Migration("20230726192241_Bco")]
+    partial class Bco
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,6 +36,11 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("Alterado")
                         .HasColumnType("datetime")
                         .HasColumnName("Alterado");
+
+                    b.Property<string>("Cpf")
+                        .IsRequired()
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
 
                     b.Property<DateTime>("Criado")
                         .HasColumnType("datetime")
