@@ -10,3 +10,8 @@ C:\Projetos\EntregaJa\src\Application\obj\Debug\net7.0\Application.dll
 C:\Projetos\EntregaJa\src\Application\obj\Debug\net7.0\refint\Application.dll
 C:\Projetos\EntregaJa\src\Application\obj\Debug\net7.0\Application.pdb
 C:\Projetos\EntregaJa\src\Application\obj\Debug\net7.0\ref\Application.dll
+C:\Projetos\EntregaJa\src\Application\bin\Debug\net7.0\Domain.dll
+C:\Projetos\EntregaJa\src\Application\bin\Debug\net7.0\Infrastructure.dll
+C:\Projetos\EntregaJa\src\Application\bin\Debug\net7.0\Domain.pdb
+C:\Projetos\EntregaJa\src\Application\bin\Debug\net7.0\Infrastructure.pdb
+C:\Projetos\EntregaJa\src\Application\obj\Debug\net7.0\Application.csproj.CopyComplete

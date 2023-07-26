@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "iwSgTuEAs9noNtjAyBP9QvDjmlE3xBe29yHhQ4olIJadLyM6EYr+oxNv7b8Ji/t2i6ZS8M/vDXa6TqTjxEiXOQ==",
-  "success": true,
+  "dgSpecHash": "wbKbo5xaPS8jickzRphmOF2rCPJpCIi4BLa9rB10MLiXkjStTPwGuKLAexbCjkGbFNFMYG+7hlaq74gXibctyg==",
+  "success": false,
   "projectFilePath": "C:\\Projetos\\EntregaJa\\src\\Ui\\Ui.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hamil\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
@@ -23,7 +23,7 @@
     "C:\\Users\\hamil\\.nuget\\packages\\microsoft.entityframeworkcore.design\\7.0.5\\microsoft.entityframeworkcore.design.7.0.5.nupkg.sha512",
     "C:\\Users\\hamil\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\7.0.5\\microsoft.entityframeworkcore.relational.7.0.5.nupkg.sha512",
     "C:\\Users\\hamil\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\7.0.5\\microsoft.entityframeworkcore.sqlserver.7.0.5.nupkg.sha512",
-    "C:\\Users\\hamil\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\7.0.5\\microsoft.entityframeworkcore.tools.7.0.5.nupkg.sha512",
+    "C:\\Users\\hamil\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\7.0.9\\microsoft.entityframeworkcore.tools.7.0.9.nupkg.sha512",
     "C:\\Users\\hamil\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\hamil\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\hamil\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
@@ -87,5 +87,15 @@
     "C:\\Users\\hamil\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\hamil\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Aviso como Erro: Downgrade de pacote detectado: Microsoft.EntityFrameworkCore.Design de 7.0.9 para 7.0.5. Referencie o pacote diretamente do projeto para selecionar uma versão diferente. \r\n Ui -> Infrastructure -> Microsoft.EntityFrameworkCore.Tools 7.0.9 -> Microsoft.EntityFrameworkCore.Design (>= 7.0.9) \r\n Ui -> Infrastructure -> Microsoft.EntityFrameworkCore.Design (>= 7.0.5)",
+      "libraryId": "Microsoft.EntityFrameworkCore.Design",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    }
+  ]
 }

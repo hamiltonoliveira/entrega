@@ -34,3 +34,7 @@ C:\Projetos\EntregaJa\bin\Debug\Microsoft.IdentityModel.Abstractions.dll
 C:\Projetos\EntregaJa\bin\Debug\Ioc.pdb
 C:\Projetos\EntregaJa\bin\Debug\Infrastructure.pdb
 C:\Projetos\EntregaJa\bin\Debug\Domain.pdb
+C:\Projetos\EntregaJa\bin\Debug\System.IdentityModel.Tokens.Jwt.dll
+C:\Projetos\EntregaJa\bin\Debug\Application.dll
+C:\Projetos\EntregaJa\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Projetos\EntregaJa\bin\Debug\Application.pdb

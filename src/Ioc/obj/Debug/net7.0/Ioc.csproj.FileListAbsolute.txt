@@ -10,3 +10,10 @@ C:\Projetos\EntregaJa\src\Ioc\obj\Debug\net7.0\Ioc.dll
 C:\Projetos\EntregaJa\src\Ioc\obj\Debug\net7.0\refint\Ioc.dll
 C:\Projetos\EntregaJa\src\Ioc\obj\Debug\net7.0\Ioc.pdb
 C:\Projetos\EntregaJa\src\Ioc\obj\Debug\net7.0\ref\Ioc.dll
+C:\Projetos\EntregaJa\src\Ioc\bin\Debug\net7.0\Application.dll
+C:\Projetos\EntregaJa\src\Ioc\bin\Debug\net7.0\Domain.dll
+C:\Projetos\EntregaJa\src\Ioc\bin\Debug\net7.0\Infrastructure.dll
+C:\Projetos\EntregaJa\src\Ioc\bin\Debug\net7.0\Application.pdb
+C:\Projetos\EntregaJa\src\Ioc\bin\Debug\net7.0\Domain.pdb
+C:\Projetos\EntregaJa\src\Ioc\bin\Debug\net7.0\Infrastructure.pdb
+C:\Projetos\EntregaJa\src\Ioc\obj\Debug\net7.0\Ioc.csproj.CopyComplete

@@ -183,7 +183,7 @@
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
-              "version": "[7.0.5, )"
+              "version": "[7.0.9, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
