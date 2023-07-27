@@ -10,7 +10,8 @@ namespace Infrastructure.Mapping
         {
             public DomainDTOMapping()
             {
-                CreateMap<User, UserDTO>().ReverseMap();
+                CreateMap<User, UserDTO>();
+                CreateMap<UserDTO, User>();
             }
         }
     }

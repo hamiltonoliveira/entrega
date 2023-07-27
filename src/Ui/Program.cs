@@ -29,7 +29,6 @@ builder.Services.AddCors(options =>
                      });
 });
 
-
 builder.Services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
 builder.Services.AddEndpointsApiExplorer();
