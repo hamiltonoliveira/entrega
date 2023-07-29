@@ -38,3 +38,4 @@ C:\Projetos\EntregaJa\bin\Debug\Application.pdb
 C:\Projetos\EntregaJa\obj\Debug\docker-compose.dcproj.AssemblyReference.cache
 C:\Projetos\EntregaJa\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
 C:\Projetos\EntregaJa\obj\Debug\docker-compose.dcproj.CopyComplete
+C:\Projetos\EntregaJa\bin\Debug\FluentValidation.dll

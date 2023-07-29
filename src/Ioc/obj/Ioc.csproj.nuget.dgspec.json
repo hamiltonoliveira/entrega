@@ -181,7 +181,7 @@
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "target": "Package",
-              "version": "[7.0.5, )"
+              "version": "[7.0.9, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",

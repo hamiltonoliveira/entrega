@@ -9,6 +9,7 @@ C:\Projetos\EntregaJa\src\Ui\bin\Debug\net7.0\AutoMapper.dll
 C:\Projetos\EntregaJa\src\Ui\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Projetos\EntregaJa\src\Ui\bin\Debug\net7.0\Azure.Core.dll
 C:\Projetos\EntregaJa\src\Ui\bin\Debug\net7.0\Azure.Identity.dll
+C:\Projetos\EntregaJa\src\Ui\bin\Debug\net7.0\FluentValidation.dll
 C:\Projetos\EntregaJa\src\Ui\bin\Debug\net7.0\Humanizer.dll
 C:\Projetos\EntregaJa\src\Ui\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Projetos\EntregaJa\src\Ui\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
