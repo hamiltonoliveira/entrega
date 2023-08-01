@@ -1,6 +1,5 @@
 ﻿using Application.Helpers;
 using Application.Interfaces;
-using Application.Services;
 using AutoMapper;
 using Domain.Dto;
 using Domain.Entities;
@@ -40,6 +39,11 @@ namespace SisTarefa.Ui.Controller
         [ProducesResponseType(typeof(ErrorResponse), 400)]
         public async Task<IActionResult> Criar([FromBody] UserDTO userDto)
         {
+            if (userDto is null)
+            {
+                throw new ArgumentNullException(nameof(userDto));
+            }
+
             UserValidation validator = new UserValidation();
             var validationResult = validator.Validate(userDto);
 
@@ -53,7 +57,7 @@ namespace SisTarefa.Ui.Controller
             User user = _mapper.Map<User>(userDto);
             user.Password = Criptograph.Encrypt(userDto.Password);
             user.SetUserName(user.Email);
-            TokensDto tokens = null;
+            TokensDto? tokens = null;
 
             try
             {
@@ -129,12 +133,12 @@ namespace SisTarefa.Ui.Controller
         [ProducesResponseType(typeof(IEnumerable<RenovarToken>), 200)]
         public async Task<IActionResult> RenovarToken([FromBody] RenovarToken renovarToken)
         {
-            TokensDto tokens = null;
+            TokensDto? tokens = null;
             try
             {
                 tokens = await _autenticarService.GerarToKen(renovarToken.Email);
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 var errorResponse = new ErrorResponse
                 {

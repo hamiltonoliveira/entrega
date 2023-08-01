@@ -20,7 +20,7 @@ namespace Application.Helpers
             throw new NotImplementedException();
         }
 
-        public static string Encrypt(string text)
+        public static string? Encrypt(string text)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace Application.Helpers
             }
         }
 
-        public static string Decrypt(string text)
+        public static string? Decrypt(string text)
         {
             try
             {

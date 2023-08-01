@@ -13,8 +13,6 @@ namespace Infrastructure.Repositories
 {
     public class AutenticarRepositorio : IAutenticarRepositorio
     {
-        protected readonly DataContext _db;
-
         private readonly IUserRepository _userRepository;
         public AutenticarRepositorio(IUserRepository userRepository)
         {
