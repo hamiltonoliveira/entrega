@@ -1,7 +1,8 @@
 # .NET
 # Ignore build output folders
-bin/
-obj/
+bin
+obj
+
 
 # Ignore .NET project user-specific files
 *.user
