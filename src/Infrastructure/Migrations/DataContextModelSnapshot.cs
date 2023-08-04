@@ -34,6 +34,9 @@ namespace Infrastructure.Migrations
                         .HasColumnType("datetime")
                         .HasColumnName("Alterado");
 
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Cpf")
                         .IsRequired()
                         .HasMaxLength(11)
@@ -70,6 +73,34 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.User", b =>
+                {
+                    b.OwnsOne("Domain.Entities.Pessoa", "Pessoa", b1 =>
+                        {
+                            b1.Property<int>("UserId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("Celular")
+                                .HasMaxLength(11)
+                                .HasColumnType("nvarchar(11)")
+                                .HasColumnName("Celular");
+
+                            b1.Property<string>("Foto")
+                                .HasColumnType("nvarchar(max)")
+                                .HasColumnName("Foto");
+
+                            b1.HasKey("UserId");
+
+                            b1.ToTable("User");
+
+                            b1.WithOwner()
+                                .HasForeignKey("UserId");
+                        });
+
+                    b.Navigation("Pessoa")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

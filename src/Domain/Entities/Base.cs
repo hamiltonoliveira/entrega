@@ -5,6 +5,7 @@ namespace Domain.Entities
     {
         public int Id { get; set; }
         public DateTime Criado { get; set; } = DateTime.UtcNow;
-        public DateTime Alterado { get; set; } = DateTime.UtcNow; 
+        public DateTime Alterado { get; set; } = DateTime.UtcNow;
+        public Boolean Ativo { get; set; } = true;
     }
 }

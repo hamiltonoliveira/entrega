@@ -2,6 +2,7 @@
 using Domain.Enums;
 using Domain.Validation;
 using FluentValidation;
+using System.Reflection.PortableExecutable;
 using System.Text.Json.Serialization;
 
 namespace Domain.Entities
@@ -16,13 +17,14 @@ namespace Domain.Entities
         public string? Email { get; set; }
         public string? Cpf { get; set; }
         public TipoFuncionario Role { get; set; }
+        public Pessoa Pessoa { get; set; }
         protected User() { }
 
-        public User(string Cpf)
+        public User(string Cpf, Pessoa pessoa)
         {
             SetCpf(Cpf);
+            Pessoa = pessoa;
         }
-
         public void SetUserName(string email)
         {
             if (email != null)
@@ -32,7 +34,7 @@ namespace Domain.Entities
             }
         }
 
-        public void SetCpf(string cpf)
+        private void SetCpf(string cpf)
         {
             if (AtribuirCpf(cpf))
             {
@@ -55,6 +57,9 @@ namespace Domain.Entities
                 RuleFor(x => x.Email).NotNull().NotEmpty().WithMessage("O campo de Email é obrigatório.").EmailAddress().WithMessage("O campo de email não possui um formato válido.");
                 RuleFor(x => x.Cpf).NotNull().NotEmpty().WithMessage("O campo de Cpf é obrigatório.");
                 RuleFor(x => x.Role).NotNull().NotEmpty().WithMessage("O campo Role não pode ser nulo");
+
+                RuleFor(Pessoa => Pessoa.Celular).NotNull();
+                RuleFor(Pessoa => Pessoa.Foto).NotNull();
             }
         }
     }

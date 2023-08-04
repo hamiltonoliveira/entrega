@@ -18,6 +18,13 @@ namespace Infrastructure.Map
             builder.Property(x => x.Email).HasMaxLength(200).IsRequired();
             builder.Property(x => x.Cpf).HasMaxLength(11).IsRequired();
             builder.Property(x => x.Role).HasMaxLength(30).IsRequired();
+
+            builder.OwnsOne(x => x.Pessoa, Pessoa =>
+            {
+                Pessoa.Property(x => x.Celular).HasColumnName("Celular").HasMaxLength(11);
+
+                Pessoa.Property(x => x.Foto).HasColumnName("Foto");
+           });
         }
     }
 }

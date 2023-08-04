@@ -53,8 +53,11 @@ namespace SisTarefa.Ui.Controller
                 return BadRequest(errors);
             }
 
-
+           
             User user = _mapper.Map<User>(userDto);
+
+            user.Pessoa = new Pessoa(userDto.Celular, userDto.Foto);
+
             user.Password = Criptograph.Encrypt(userDto.Password);
             user.SetUserName(user.Email);
             TokensDto? tokens = null;
