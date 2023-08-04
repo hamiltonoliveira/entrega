@@ -57,9 +57,8 @@ namespace Domain.Entities
                 RuleFor(x => x.Email).NotNull().NotEmpty().WithMessage("O campo de Email é obrigatório.").EmailAddress().WithMessage("O campo de email não possui um formato válido.");
                 RuleFor(x => x.Cpf).NotNull().NotEmpty().WithMessage("O campo de Cpf é obrigatório.");
                 RuleFor(x => x.Role).NotNull().NotEmpty().WithMessage("O campo Role não pode ser nulo");
-
-                RuleFor(Pessoa => Pessoa.Celular).NotNull();
-                RuleFor(Pessoa => Pessoa.Foto).NotNull();
+                RuleFor(Pessoa => Pessoa.Celular).NotNull().WithMessage("O campo Celular não pode ser nulo"); 
+                RuleFor(Pessoa => Pessoa.Foto).NotNull().WithMessage("O campo Foto não pode ser nulo"); 
             }
         }
     }

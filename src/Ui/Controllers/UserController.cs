@@ -85,7 +85,7 @@ namespace SisTarefa.Ui.Controller
             return Ok(tokens);
         }
 
-        [Authorize(Roles = "Desenvolvedor")]
+        [Authorize(Roles = "Administrador")]
         [HttpGet("DadosUsuario")]
         [ProducesResponseType(typeof(IEnumerable<UserDTO>), 200)]
         public IActionResult DadosUsuario()
