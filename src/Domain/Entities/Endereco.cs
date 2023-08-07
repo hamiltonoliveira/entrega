@@ -2,8 +2,6 @@
 {
     public class Endereco
     {
-        public Endereco() { }
-
         public string logradouro { get; set; }
         public string complemento { get; set; }
         public string numero { get; set; }

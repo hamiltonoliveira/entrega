@@ -57,6 +57,7 @@ namespace SisTarefa.Ui.Controller
             User user = _mapper.Map<User>(userDto);
 
             user.Pessoa = new Pessoa(userDto.Celular, userDto.Foto);
+            user.Endereco = new Endereco(userDto.logradouro, userDto.complemento, userDto.numero, userDto.cep, userDto.bairro, userDto.cidade, userDto.estado, userDto.municipio);
 
             user.Password = Criptograph.Encrypt(userDto.Password);
             user.SetUserName(user.Email);

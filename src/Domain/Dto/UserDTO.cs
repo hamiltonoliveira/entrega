@@ -15,7 +15,7 @@
         public string? cep { get; set; }
         public string? bairro { get; set; }
         public string? cidade { get; set; }
-        public string estado { get; set; }
-        public string municipio { get; set; }
+        public string? estado { get; set; }
+        public string? municipio { get; set; }
     }
 }
