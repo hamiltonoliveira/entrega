@@ -1,7 +1,7 @@
 ﻿ 
 namespace Domain.Enums
 {
-    public enum TipoFuncionario
+    public enum TipoUser
     {
         Lojista,
         Atendente, 

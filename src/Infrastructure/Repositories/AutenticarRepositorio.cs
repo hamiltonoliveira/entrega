@@ -30,7 +30,7 @@ namespace Infrastructure.Repositories
             {
                 _UserName = item.UserName;
                 _GuidI = item.GuidI;
-                _Role = Enum.GetName(typeof(TipoFuncionario), item.Role);
+                _Role = Enum.GetName(typeof(TipoUser), item.Role);
             }
 
             var _Token = generateJwtToken(_UserName, _GuidI, _Role);

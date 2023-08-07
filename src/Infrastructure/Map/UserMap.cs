@@ -25,6 +25,25 @@ namespace Infrastructure.Map
 
                 Pessoa.Property(x => x.Foto).HasColumnName("Foto");
            });
+
+            builder.OwnsOne(x => x.Endereco, endereco =>
+            {
+                endereco.Property(x => x.logradouro).HasColumnName("Logradouro").HasMaxLength(50);
+
+                endereco.Property(x => x.complemento).HasColumnName("Complemento").HasMaxLength(20);
+
+                endereco.Property(x => x.numero).HasColumnName("Numero").HasMaxLength(5);
+
+                endereco.Property(x => x.cep).HasColumnName("Cep").HasMaxLength(8);
+
+                endereco.Property(x => x.bairro).HasColumnName("Bairro").HasMaxLength(30);
+
+                endereco.Property(x => x.cidade).HasColumnName("Cidade").HasMaxLength(30);
+
+                endereco.Property(x => x.estado).HasColumnName("Estado").HasMaxLength(2);
+
+                endereco.Property(x => x.municipio).HasColumnName("Municipio").HasMaxLength(30);
+            });
         }
     }
 }

@@ -4,6 +4,7 @@ using Domain.Validation;
 using FluentValidation;
 using System.Reflection.PortableExecutable;
 using System.Text.Json.Serialization;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Domain.Entities
 {
@@ -16,14 +17,17 @@ namespace Domain.Entities
         public string? GuidI { get; set; } = Guid.NewGuid().ToString();
         public string? Email { get; set; }
         public string? Cpf { get; set; }
-        public TipoFuncionario Role { get; set; }
+        public TipoUser Role { get; set; }
         public Pessoa Pessoa { get; set; }
+        public Endereco Endereco { get; set; }
+        public bool Ativo { get; set; }
         protected User() { }
 
-        public User(string Cpf, Pessoa pessoa)
+        public User(string Cpf, Pessoa pessoa, Endereco endereco)
         {
             SetCpf(Cpf);
             Pessoa = pessoa;
+            Endereco = endereco;
         }
         public void SetUserName(string email)
         {
@@ -39,6 +43,10 @@ namespace Domain.Entities
             if (AtribuirCpf(cpf))
             {
                 this.Cpf = cpf;
+            }
+            else
+            {
+                this.Cpf = null;
             }
         }
         private bool AtribuirCpf(string cpfNumero)
@@ -58,7 +66,16 @@ namespace Domain.Entities
                 RuleFor(x => x.Cpf).NotNull().NotEmpty().WithMessage("O campo de Cpf é obrigatório.");
                 RuleFor(x => x.Role).NotNull().NotEmpty().WithMessage("O campo Role não pode ser nulo");
                 RuleFor(Pessoa => Pessoa.Celular).NotNull().WithMessage("O campo Celular não pode ser nulo"); 
-                RuleFor(Pessoa => Pessoa.Foto).NotNull().WithMessage("O campo Foto não pode ser nulo"); 
+                RuleFor(Pessoa => Pessoa.Foto).NotNull().WithMessage("O campo Foto não pode ser nulo");
+
+                RuleFor(Endereco => Endereco.logradouro).NotNull().WithMessage("O campo Endereço não pode ser nulo");
+                RuleFor(Endereco => Endereco.complemento).NotNull().WithMessage("O campo Complemento não pode ser nulo");
+                RuleFor(Endereco => Endereco.numero).NotNull().WithMessage("O campo Número não pode ser nulo");
+                RuleFor(Endereco => Endereco.cep).NotNull().WithMessage("O campo Cep não pode ser nulo");
+                RuleFor(Endereco => Endereco.bairro).NotNull().WithMessage("O campo Bairro não pode ser nulo");
+                RuleFor(Endereco => Endereco.cidade).NotNull().WithMessage("O campo Cidade não pode ser nulo");
+                RuleFor(Endereco => Endereco.estado).NotNull().WithMessage("O campo Estado não pode ser nulo");
+                RuleFor(Endereco => Endereco.municipio).NotNull().WithMessage("O campo Município não pode ser nulo");
             }
         }
     }
